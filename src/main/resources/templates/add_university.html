@@ -5,7 +5,10 @@
 </head>
 <body>
 <th:block th:insert="index::header"></th:block>
-
-
+    <form method="post" th:action="@{/university/add}" th:object="${university}">
+        <input th:field="*{universityName}" type="text" placeholder="название университета"/>
+        <button type="submit">Добавить</button>
+    </form>
 </body>
 </html>
+
