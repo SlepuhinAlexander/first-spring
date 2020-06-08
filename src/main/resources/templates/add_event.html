@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: head(~{::title})">
+    <title>Добавление события</title>
+</head>
+<body>
+<th:block th:insert="index::header"></th:block>
+
+<div>
+    <h3>Добавление события</h3>
+    <form >
+        <div>
+            <label for="eventTitle">Название события</label>
+            <input type="text" id="eventTitle" placeholder="Введите название">
+        </div>
+        <div>
+            <label for="eventDescription">Описание события</label>
+            <textarea id="eventDescription" placeholder="Введите описание события"></textarea>
+        </div>
+        <div>
+            <label for="dateStart">Дата начала события</label>
+            <input type="datetime-local" id="dateStart" placeholder="Введите дату">
+        </div>
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+
+</body>
+</html>
