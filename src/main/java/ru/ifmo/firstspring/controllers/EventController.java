@@ -21,13 +21,13 @@ public class EventController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String showForm(Model model){
+    public String showForm(Model model) {
         model.addAttribute("event", new Event());
         return "add_event";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String submitForm(@ModelAttribute Event event){
+    public String submitForm(@ModelAttribute Event event) {
         eventRepository.save(event);
         return "redirect:/event/add";
     }
