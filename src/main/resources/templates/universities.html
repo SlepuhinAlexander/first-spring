@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: head(~{::title})">
+    <title>Университеты</title>
+</head>
+<body>
+<th:block th:insert="index::header"></th:block>
+<div class="container">
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Название университета</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="university, state : ${universities}">
+                <th scope="row" th:utext="${state.count}"></th>
+                <td th:utext="${university.universityName}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+</div>
+</body>
+</html>

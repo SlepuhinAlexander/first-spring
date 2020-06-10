@@ -6,22 +6,22 @@
 <body>
 <th:block th:insert="index::header"></th:block>
 
-<div>
+<div class="container">
     <h3>Добавление события</h3>
-    <form >
-        <div>
+    <form th:fragment="event" method="post" th:action="@{/event/add}" th:object="${event}">
+        <div class="form-group">
             <label for="eventTitle">Название события</label>
-            <input type="text" id="eventTitle" placeholder="Введите название">
+            <input th:field="*{eventTitle}" type="text" class="form-control" id="eventTitle" placeholder="Введите название">
         </div>
-        <div>
+        <div class="form-group">
             <label for="eventDescription">Описание события</label>
-            <textarea id="eventDescription" placeholder="Введите описание события"></textarea>
+            <textarea th:field="*{eventDescription}"  class="form-control" id="eventDescription" placeholder="Введите описание события"></textarea>
         </div>
-        <div>
-            <label for="dateStart">Дата начала события</label>
-            <input type="datetime-local" id="dateStart" placeholder="Введите дату">
+        <div class="form-group">
+            <label for="eventStart">Дата начала события</label>
+            <input th:field="*{eventStart}" type="datetime-local" class="form-control" id="eventStart" placeholder="Введите дату">
         </div>
-        <button type="submit">Добавить</button>
+        <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
 </div>
 

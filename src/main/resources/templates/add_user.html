@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление пользователя</title>
+</head>
+<body>
+    <form method="post" th:action="@{/user/add}" th:object="${user}">
+        <div>
+            <input type="text" th:field="*{login}" placeholder="login">
+            <p th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></p>
+        </div>
+        <div>
+            <input type="text" th:field="*{pwd}" placeholder="pwd">
+            <p th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></p>
+        </div>
+        <div>
+            <input type="text" th:field="*{email}" placeholder="email">
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        </div>
+        <div><input type="submit" value="Добавить"></div>
+    </form>
+</body>
+</html>

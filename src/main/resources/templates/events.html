@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: head(~{::title})">
+    <title>Университеты</title>
+</head>
+<body>
+<th:block th:insert="index::header"></th:block>
+<div class="container">
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название события</th>
+            <th scope="col">Описание события</th>
+            <th scope="col">Дата начала события</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="event, state : ${events}">
+            <th scope="row" th:utext="${state.count}"></th>
+            <td th:utext="${event.eventTitle}"></td>
+            <td th:utext="${event.eventDescription}"></td>
+            <td th:utext="${event.eventStart}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

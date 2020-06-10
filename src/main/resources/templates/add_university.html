@@ -5,10 +5,19 @@
 </head>
 <body>
 <th:block th:insert="index::header"></th:block>
-    <form method="post" th:action="@{/university/add}" th:object="${university}">
-        <input th:field="*{universityName}" type="text" placeholder="название университета"/>
-        <button type="submit">Добавить</button>
+
+<div class="container">
+    <h3>Добавление университета</h3>
+    <form th:fragment="university" method="post" th:action="@{/university/add}" th:object="${university}">
+        <div class="form-group">
+            <label for="universityName">Название университета</label>
+            <input th:field="*{universityName}" type="text" class="form-control" id="universityName" aria-describedby="name" placeholder="Введите название">
+            <small id="name" class="form-text text-muted">Университет, студенты которого могут регистрироваться на события</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
+</div>
+
+
 </body>
 </html>
-

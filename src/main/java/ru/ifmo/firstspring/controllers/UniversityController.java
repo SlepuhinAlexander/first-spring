@@ -34,6 +34,13 @@ public class UniversityController {
         return "redirect:/university/add";
     }
 
+    @RequestMapping(value = "/show")
+    public String showData(Model model){
+        model.addAttribute("universities", repository.findAll());
+        return "universities";
+    }
+
+
 }
 
 
