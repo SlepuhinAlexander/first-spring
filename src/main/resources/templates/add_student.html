@@ -7,10 +7,21 @@
 <th:block th:insert="index::header"></th:block>
 
 <h3>Добавление студента</h3>
+<!--model.addAttribute("student", new Student());-->
 <form method="post" th:action="@{/student/add}" th:object="${student}">
+
+    <!--
+    name="universityId"
+   ! option nyny (value-id-1)              [universityId : 1]
+    option thfrujc (value-id-2)
+    option jcfkmjg (value-id-3)
+    -->
+
+
     <div>
         <!--список университетов-->
         <select name="universityId">
+<!--            model.addAttribute("universities", universityRepository.findAll());-->
             <option th:each="university : ${universities}"
                     th:value="${university.id}"
                     th:utext="${university.universityName}">
@@ -20,6 +31,7 @@
 
     <div>
         <!--список событий-->
+<!--        model.addAttribute("events", eventRepository.findAll());-->
         <select name="eventId">
             <option th:each="event : ${events}"
                     th:value="${event.id}"

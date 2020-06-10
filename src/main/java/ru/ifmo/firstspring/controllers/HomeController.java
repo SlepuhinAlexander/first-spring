@@ -5,21 +5,23 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.ifmo.firstspring.repository.EventRepository;
+import ru.ifmo.firstspring.repository.UniversityRepository;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-import static ru.ifmo.firstspring.specification.Specifications.eventsByDates;
-import static ru.ifmo.firstspring.specification.Specifications.inTitle;
+import static ru.ifmo.firstspring.specification.Specifications.*;
 
 @Controller // bean beanContainer
 public class HomeController  {
 
     private EventRepository eventRepository;
+    private UniversityRepository universityRepository;
 
     @Autowired
-    public HomeController(EventRepository eventRepository) {
+    public HomeController(EventRepository eventRepository, UniversityRepository universityRepository) {
         this.eventRepository = eventRepository;
+        this.universityRepository = universityRepository;
     }
 
     @RequestMapping("/")
@@ -32,6 +34,7 @@ public class HomeController  {
         // SELECT * FROM event WHERE eventStart BETWEEN from AND to;
         LocalDateTime from = LocalDateTime.now().minus(2, ChronoUnit.WEEKS);
         LocalDateTime to = LocalDateTime.now().plus(2, ChronoUnit.WEEKS);
+
         eventRepository.findAll(eventsByDates(from, to)).forEach(System.out::println);
 
         // SELECT * FROM event WHERE условие OR/AND условие
@@ -39,6 +42,8 @@ public class HomeController  {
                 inTitle("java").and(eventsByDates(from, to))
         )).forEach(System.out::println);
 
+        System.out.println("---studentsCount---");
+        System.out.println(universityRepository.count(studentCount("ИТМО")));
 
         return "index";
     }
