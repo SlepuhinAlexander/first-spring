@@ -21,33 +21,37 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registrationForm(User user){
+    public String registrationForm(User user) {
         return "registration";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginForm(){
+    public String loginForm() {
         return "login";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String regUser(
             @ModelAttribute("user") @Valid User user,
+            /*
+             * Аннотация @Valid означает, что поле должно проверяться.
+             * В случае проблем их нужно корректно обработать.
+             * */
             BindingResult bindingResult,
             Model model
-    )
-    {
-        if (bindingResult.hasErrors()){
+    ) {
+        if (bindingResult.hasErrors()) {
             return "registration";
         }
 
-        if (!user.getPassword().equals(user.getPasswordConfirm())){
+        if (!user.getPassword().equals(user.getPasswordConfirm())) {
             model.addAttribute("confirmError", "Пароли не совпадают");
             return "registration";
         }
 
-        if (!userService.saveUser(user)){
+        if (!userService.saveUser(user)) {
             model.addAttribute("usernameError",
                     "Пользователь с данным логином уже существует");
             return "registration";
